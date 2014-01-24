@@ -18,6 +18,22 @@
         {
             "name": "exampleGlobal",
             "class": "fi.paivola.mapserver.models.ExampleGlobal"
+        },
+        {
+            "name": "criminalGlobal",
+            "class": "fi.paivola.mapserver.models.CriminalGlobal"
+        },
+        {
+            "name": "criminalPoint",
+            "class": "fi.paivola.mapserver.models.CriminalPoint"
+        },
+        {
+            "name": "criminalConnection",
+            "class": "fi.paivola.mapserver.models.CriminalConnection"
+        },
+        {
+            "name": "criminalExtender",
+            "class": "fi.paivola.mapserver.models.CriminalExtender"
         }
     ]
 }

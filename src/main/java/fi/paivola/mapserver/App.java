@@ -82,21 +82,21 @@ public class App {
         GameManager gm = one.game;
 
         // Create and add
-        Model mg = gm.createModel("exampleGlobal");
+        Model mg = gm.createModel("criminalGlobal");
 
         // This is how you change a "setting" from the code.
-        SettingMaster sm = gm.getDefaultSM("exampleGlobal");
-        sm.settings.get("cats").setValue("2");
+        SettingMaster sm = gm.getDefaultSM("criminalGlobal");
+        sm.settings.get("criminals").setValue("125");
         mg.onActualUpdateSettings(sm);
 
-        int size = 32;
+        int size = 2;
 
         Model[] points = new Model[size];
         Model[] conns = new Model[size];
 
         for (int i = 0; i < size; i++) {
-            points[i] = gm.createModel("examplePoint");
-            conns[i] = gm.createModel("exampleConnection");
+            points[i] = gm.createModel("criminalPoint");
+            conns[i] = gm.createModel("criminalConnection");
         }
 
         for (int i = 0; i < size; i++) {
