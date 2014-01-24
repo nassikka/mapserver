@@ -527,7 +527,7 @@ public class CriminalPoint extends PointModel{
             this.saveInt("criminalFood", food);
             this.saveInt("criminalMoney", money);
             this.saveInt("criminalItems", items);
-            this.saveInt("criminalsOnBase", criminals);
+            this.saveInt("criminalsInBase", criminals);
             this.saveInt("stealers", stealers);
             this.saveInt("pirates", pirates);
             this.saveInt("hijackers", hijackers);
@@ -543,14 +543,14 @@ public class CriminalPoint extends PointModel{
     public void onRegisteration(GameManager gm, SettingMaster sm) {
         sm.setIcon(Icon.TOWN); // ToDo: Have some effect.
         sm.color = new Color(255, 204, 255); // What color is displayed in client.
-        sm.settings.put("criminalFood", new SettingInt("How much food do the criminals have?", 375, new RangeInt(0, 17)));
-        sm.settings.put("criminalMoney", new SettingInt("How much money do the criminals have?", 125, new RangeInt(0, 17)));
-        sm.settings.put("criminalItems", new SettingInt("How many items do the criminals have?", 125, new RangeInt(0, 17)));
-        sm.settings.put("criminalsInBase", new SettingInt("How how many criminals there are in base?", 125, new RangeInt(0, 17)));
-        sm.settings.put("criminalsStealing", new SettingInt("How many stealers there are?", 0, new RangeInt(0, 17)));
-        sm.settings.put("criminalsPirating", new SettingInt("How many pirates there are?", 0, new RangeInt(0, 17)));
-        sm.settings.put("criminalsHijacking", new SettingInt("How many hijackers there are?", 0, new RangeInt(0, 17)));
-        sm.settings.put("totalCriminals", new SettingInt("How many criminals there are in total?", 125, new RangeInt(0, 17)));
+        sm.settings.put("criminalFood", new SettingInt("How much food do the criminals have?", 375, new RangeInt(3*Math.round(population*0.01f), 3*Math.round(population*0.1f))));
+        sm.settings.put("criminalMoney", new SettingInt("How much money do the criminals have?", 125, new RangeInt(Math.round(population*0.01f), Math.round(population*0.1f))));
+        sm.settings.put("criminalItems", new SettingInt("How many items do the criminals have?", 125, new RangeInt(Math.round(population*0.01f), Math.round(population*0.1f))));
+        sm.settings.put("criminalsInBase", new SettingInt("How how many criminals there are in base?", 125, new RangeInt(Math.round(population*0.01f), Math.round(population*0.1f))));
+        sm.settings.put("criminalsStealing", new SettingInt("How many stealers there are in one group?", 3, new RangeInt(1, 20)));
+        sm.settings.put("criminalsPirating", new SettingInt("How many pirates there are in one group?", 10, new RangeInt(1, 20)));
+        sm.settings.put("criminalsHijacking", new SettingInt("How many hijackers there are in one group?", 5, new RangeInt(1, 20)));
+        sm.settings.put("totalCriminals", new SettingInt("How many criminals there are in total?", 125, new RangeInt(Math.round(population*0.01f), Math.round(population*0.1f))));
         sm.allowedNames.add("criminalConnection"); // The things trying to get connected to this need satisfy atleast one of these tags.
         sm.name = "criminalPoint";
     }
@@ -565,9 +565,9 @@ public class CriminalPoint extends PointModel{
         this.money = Integer.parseInt(sm.settings.get("criminalMoney").getValue());
         this.items = Integer.parseInt(sm.settings.get("criminalItems").getValue());
         this.criminals = Integer.parseInt(sm.settings.get("criminalsInBase").getValue());
-        this.stealers = Integer.parseInt(sm.settings.get("criminalsStealing").getValue());
-        this.pirates = Integer.parseInt(sm.settings.get("criminalsPirating").getValue());
-        this.hijackers = Integer.parseInt(sm.settings.get("criminalsHijacking").getValue());
+        this.stealGroup = Integer.parseInt(sm.settings.get("criminalsStealing").getValue());
+        this.piracyGroup = Integer.parseInt(sm.settings.get("criminalsPirating").getValue());
+        this.hijackGroup = Integer.parseInt(sm.settings.get("criminalsHijacking").getValue());
     }
     
     //funktio, joka ottaa parametreinä kriminaalien tekemän homman todennäköisyydet
